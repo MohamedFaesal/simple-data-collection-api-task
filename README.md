@@ -1,8 +1,10 @@
-## What i did tell know
+## What i did tell now
 
 I simply read data from json files and map them to an entity called users then search in them with filers described below (in task description)
 
 I didn't do unit testing but simply i did it before in this [repository](https://github.com/MohamedFaesal/tic-tac-toe-code-sample).
+
+Also i didn't use docker.
 
 # Task Description:
 
