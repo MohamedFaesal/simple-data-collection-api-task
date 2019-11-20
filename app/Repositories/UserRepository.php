@@ -3,6 +3,8 @@
 namespace App\Repositories;
 
 use App\Http\Entities\User;
+use App\Mappings\XMapping;
+use App\Mappings\YMapping;
 use App\Models\UserModel;
 
 /**
@@ -34,6 +36,51 @@ class UserRepository
      */
     public function getUsersByCriteria(array $criteria = []) : array
     {
-        $users = $this->userModel->getUsers();
+        $providers = [
+            'DataProviderX' => new XMapping(),
+            'DataProviderY' => new YMapping(),
+        ];
+        if (isset($criteria['provider']) && isset($providers[$criteria['provider']])) {
+            $providers = [$criteria['provider'] => $providers[$criteria['provider']]];
+        }
+        $users = $this->userModel->getUsers($providers);
+        $filteredUsers = [];
+        /**
+         * @var User $user
+         *
+         */
+        foreach ($users as $user) {
+            if (isset($criteria['statusCode'])) {
+                if ($criteria['statusCode'] != $user->status) {
+                    continue;
+                }
+            }
+
+            if (isset($criteria['statusCode'])) {
+                if ($criteria['statusCode'] != $user->status) {
+                    continue;
+                }
+            }
+
+            if (isset($criteria['currency'])) {
+                if ($criteria['currency'] != $user->currency) {
+                    continue;
+                }
+            }
+
+            if (isset($criteria['balanceMin'])) {
+                if (floatval($criteria['balanceMin']) > $user->balance) {
+                    continue;
+                }
+            }
+
+            if (isset($criteria['balanceMax'])) {
+                if (floatval($criteria['balanceMax']) < $user->balance) {
+                    continue;
+                }
+            }
+            $filteredUsers[] = $user;
+        }
+        return $filteredUsers;
     }
 }

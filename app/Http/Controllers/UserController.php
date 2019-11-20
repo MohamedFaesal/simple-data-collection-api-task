@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Entities\User;
 use App\Repositories\UserRepository;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
@@ -29,10 +28,12 @@ class UserController extends BaseController
     }
 
     /**
+     * get users by criteria
      * @param Request $request
+     * @return array
      */
     public function getUsers(Request $request)
     {
-        $this->userRepository->getUsersByCriteria();
+        return ['users' => $this->userRepository->getUsersByCriteria($request->all())];
     }
 }

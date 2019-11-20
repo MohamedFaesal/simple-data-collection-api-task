@@ -6,11 +6,11 @@ use App\Http\Utils\CodeStatusUtils;
 use App\Mappings\Interfaces\IMapping;
 
 /**
- * XMapping Class mapping x provider
+ * YMapping Class mapping y provider
  * @package App\Mappings
  * @author Mohamed Faesal <mohamed.feasal@gmail.com>
  */
-class XMapping implements IMapping
+class YMapping implements IMapping
 {
     /**
      * {@inheritdoc}
@@ -18,27 +18,27 @@ class XMapping implements IMapping
     public function getMappingSchema() : array {
         return [
             'id' => [
-                'key' => 'parentIdentification'
+                'key' => 'id'
             ],
             'balance' => [
-                'key' => 'parentAmount'
+                'key' => 'balance'
             ],
             'currency' => [
-                'key' => 'Currency'
+                'key' => 'currency'
             ],
             'email' => [
-                'key' => 'parentEmail'
+                'key' => 'email'
             ],
             'status' => [
-                'key' => 'statusCode',
+                'key' => 'status',
                 'allowedValues' => [
-                    1 => CodeStatusUtils::AUTHORIZED,
-                    2 => CodeStatusUtils::DECLINED,
-                    3 => CodeStatusUtils::REFUNDED
+                    100 => CodeStatusUtils::AUTHORIZED,
+                    200 => CodeStatusUtils::DECLINED,
+                    300 => CodeStatusUtils::REFUNDED
                 ]
             ],
             'registrationDate' => [
-                'key' => 'registerationDate',
+                'key' => 'created_at',
             ],
         ];
     }
