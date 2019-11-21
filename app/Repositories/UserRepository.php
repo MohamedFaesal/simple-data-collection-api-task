@@ -56,12 +56,6 @@ class UserRepository
                 }
             }
 
-            if (isset($criteria['statusCode'])) {
-                if ($criteria['statusCode'] != $user->status) {
-                    continue;
-                }
-            }
-
             if (isset($criteria['currency'])) {
                 if ($criteria['currency'] != $user->currency) {
                     continue;

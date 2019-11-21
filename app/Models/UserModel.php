@@ -4,8 +4,6 @@ namespace App\Models;
 
 use App\Http\Entities\User;
 use App\Mappings\Interfaces\IMapping;
-use App\Mappings\XMapping;
-use App\Mappings\YMapping;
 use Carbon\Carbon;
 
 /**
@@ -17,6 +15,7 @@ class UserModel
 {
     /**
      * get a list of users.
+     * @param array $providers
      * @return array
      */
     public function getUsers(array $providers = []) : array
